@@ -53,7 +53,7 @@ SUDO_BIN="$(which sudo)"
 #------------Directories--------------#
 THEME_SRC_DIR="${REPO_DIR}/src"
 DASH_TO_DOCK_SRC_DIR="${REPO_DIR}/src/other/dash-to-dock"
-DASH_TO_DOCK_DIR_ROOT="/usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com"
+DASH_TO_DOCK_DIR_ROOT="$PWD/usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com"
 DASH_TO_DOCK_DIR_HOME="${MY_HOME}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com"
 GNOME_SHELL_EXTENSION_DIR="${MY_HOME}/.local/share/gnome-shell/extensions"
 FIREFOX_SRC_DIR="${REPO_DIR}/src/other/firefox"
@@ -65,23 +65,19 @@ FIREFOX_SNAP_DIR_HOME="${MY_HOME}/snap/firefox/common/.mozilla/firefox"
 FIREFOX_SNAP_THEME_DIR="${MY_HOME}/snap/firefox/common/.mozilla/firefox/firefox-themes"
 export WHITESUR_TMP_DIR="/tmp/WhiteSur.lock"
 
-if [[ -w "/root" ]]; then
-  THEME_DIR="/usr/share/themes"
-else
-  THEME_DIR="$HOME/.themes"
-fi
+THEME_DIR="$PWD/usr/share/themes"
 
 #--------------GDM----------------#
-WHITESUR_GS_DIR="/usr/share/gnome-shell/theme/WhiteSur"
-COMMON_CSS_FILE="/usr/share/gnome-shell/theme/gnome-shell.css"
-UBUNTU_CSS_FILE="/usr/share/gnome-shell/theme/ubuntu.css"
-ZORIN_CSS_FILE="/usr/share/gnome-shell/theme/zorin.css"
-ETC_CSS_FILE="/etc/alternatives/gdm3.css"
-ETC_GR_FILE="/etc/alternatives/gdm3-theme.gresource"
-YARU_GR_FILE="/usr/share/gnome-shell/theme/Yaru/gnome-shell-theme.gresource"
-POP_OS_GR_FILE="/usr/share/gnome-shell/theme/Pop/gnome-shell-theme.gresource"
-ZORIN_GR_FILE="/usr/share/gnome-shell/theme/ZorinBlue-Light/gnome-shell-theme.gresource"
-MISC_GR_FILE="/usr/share/gnome-shell/gnome-shell-theme.gresource"
+WHITESUR_GS_DIR="$PWD/usr/share/gnome-shell/theme/WhiteSur"
+COMMON_CSS_FILE="$PWD/usr/share/gnome-shell/theme/gnome-shell.css"
+UBUNTU_CSS_FILE="$PWD/usr/share/gnome-shell/theme/ubuntu.css"
+ZORIN_CSS_FILE="$PWD/usr/share/gnome-shell/theme/zorin.css"
+ETC_CSS_FILE="$PWD/usr/etc//alternatives/gdm3.css"
+ETC_GR_FILE="$PWD/usr/etc//alternatives/gdm3-theme.gresource"
+YARU_GR_FILE="$PWD/usr/share/gnome-shell/theme/Yaru/gnome-shell-theme.gresource"
+POP_OS_GR_FILE="$PWD/usr/share/gnome-shell/theme/Pop/gnome-shell-theme.gresource"
+ZORIN_GR_FILE="$PWD/usr/share/gnome-shell/theme/ZorinBlue-Light/gnome-shell-theme.gresource"
+MISC_GR_FILE="$PWD/usr/share/gnome-shell/gnome-shell-theme.gresource"
 GS_GR_XML_FILE="${THEME_SRC_DIR}/main/gnome-shell/gnome-shell-theme.gresource.xml"
 
 #-------------Theme---------------#
@@ -274,7 +270,7 @@ signal_error() {
 
   IFS=$'\n'
   local sources=($(basename -a "${WHITESUR_SOURCE[@]}" "${BASH_SOURCE[@]}" | sort -u))
-  local dist_ids=($(awk -F '=' '/ID/{print $2}' "/etc/os-release" | tr -d '"' | sort -Vru))
+  local dist_ids=($(awk -F '=' '/ID/{print $2}' "$PWD/usr/etc//os-release" | tr -d '"' | sort -Vru))
   local repo_ver=""
   local lines=()
   local log="$(awk '{printf "\033[1;31m  >>> %s\n", $0}' "${WHITESUR_TMP_DIR}/error_log.txt" || echo "")"

@@ -62,6 +62,24 @@
 	border-image: none !important;
 }
 
+/* Tabs separators */
+.tabbrowser-tab {
+	border-left: 1px solid transparent !important;
+}
+
+.tabbrowser-tab + .tabbrowser-tab:not([selected], :hover) {
+	border-color: var(--gnome-toolbar-border-color) !important;
+}
+
+.tabbrowser-tab[selected] + .tabbrowser-tab,
+.tabbrowser-tab:hover + .tabbrowser-tab {
+	border-color: transparent !important;
+}
+
+.tabbrowser-tab:first-of-type {
+	border-left: none !important;
+}
+
 /* Space between tabs */
 .tabbrowser-tab:not([pinned=true]) {
 	margin: 0 !important;
@@ -302,6 +320,14 @@ tab[selected]:-moz-window-inactive {
 	display: none;
 }
 
+/* Tab attention dot */
+.tabbrowser-tab:is([image], [pinned]) > .tab-stack > .tab-content[attention]:not([selected="true"]), .tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]), #firefox-view-button[attention] {
+	background-image: radial-gradient(circle, var(--gnome-tab-attention-icon-color), var(--gnome-tab-attention-icon-color) 2px, transparent 2px) !important;
+	background-position: center bottom 3px !important;
+	background-size: 4px 4px;
+	background-repeat: no-repeat;
+}
+
 /* Remove alt colours references for multi tabs*/
 .tabbrowser-tab[usercontextid] > .tab-stack > .tab-background > .tab-context-line {
 	display: none;
@@ -314,6 +340,10 @@ tab[selected]:-moz-window-inactive {
 .tab-background {
 	background-color: transparent !important;
 	transition: all 200ms;
+}
+
+.tab-background, .tab-stack {
+	min-height: 32px !important;
 }
 
 /* Tab hover */
@@ -446,10 +476,4 @@ tab[selected]:-moz-window-inactive {
 [pictureinpicture] {
 	margin-inline-end: 4px !important;
 	margin-inline-start: 4px !important;
-}
-
-/* Fix too many tabs text align */
-.tab-close-button[pinned],
-#tabbrowser-tabs[closebuttons="activetab"]>#tabbrowser-arrowscrollbox>.tabbrowser-tab>.tab-stack>.tab-content>.tab-icon-stack[selected="true"] {
-	margin-left: auto !important;
 }

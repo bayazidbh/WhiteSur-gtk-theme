@@ -89,8 +89,12 @@ $nautilus_sidebar_image: image($dark_sidebar_bg);
         > .linked > button.disclosure-button { margin-left: $container_padding / 2; }
 
         @if $placement == 'left' {
-          .nautilus-path-bar, entry.search {
-            margin-left: 22px;
+          > box > stack > box {
+            margin-left: 18px;
+          }
+
+          entry {
+            margin-left: 6px;
           }
         }
       }

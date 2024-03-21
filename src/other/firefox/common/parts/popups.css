@@ -186,6 +186,10 @@ menuitem, menupopup menu,
 	min-height: 28px !important;
 }
 
+.toolbar-menupopup :is(menu, menuitem) {
+	margin: 0 !important;
+}
+
 .subviewbutton,
 .protections-popup-footer-button,
 .protections-popup-category,
@@ -302,4 +306,9 @@ panel[type="autocomplete-richlistbox"] {
 }
 .autocomplete-richlistitem:not([type="loginsFooter"]):hover .ac-site-icon {
 	fill: #fff !important;
+}
+
+/* Fixes for menu scrollbox */
+arrowscrollbox.menupopup-arrowscrollbox {
+	height: 100%;
 }

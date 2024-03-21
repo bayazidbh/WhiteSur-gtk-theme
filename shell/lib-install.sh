@@ -739,6 +739,7 @@ config_firefox() {
       echo "user_pref(\"browser.uidensity\", 0);" >>                                          "${d}/prefs.js"
       echo "user_pref(\"layers.acceleration.force-enabled\", true);" >>                       "${d}/prefs.js"
       echo "user_pref(\"mozilla.widget.use-argb-visuals\", true);" >>                         "${d}/prefs.js"
+      echo "user_pref(\"widget.gtk.rounded-bottom-corners.enabled\", true);" >>               "${d}/prefs.js"
     fi
   done
 }
@@ -955,6 +956,12 @@ customize_theme() {
   if [[ "${showapps_normal}" == 'true' ]]; then
     prompt -s "Changing gnome-shell show apps button style ...\n"
     sed $SED_OPT "/\$showapps_button/s/bigsur/normal/"                          "${THEME_SRC_DIR}/sass/_theme-options-temp.scss"
+  fi
+
+  # Change gnome-shell panel activities button style
+  if [[ "${default_activities}" == 'true' ]]; then
+    prompt -s "Changing gnome-shell panel activities button style ...\n"
+    sed $SED_OPT "/\$activities/s/apple/normal/"                                "${THEME_SRC_DIR}/sass/_theme-options-temp.scss"
   fi
 
   # Change panel font color

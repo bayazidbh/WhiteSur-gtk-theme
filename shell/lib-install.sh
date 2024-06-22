@@ -381,10 +381,6 @@ install_shelly() {
     TARGET_DIR="${6}"
   fi
 
-  if [[ "${GNOME_VERSION}" == 'none' ]]; then
-    local GNOME_VERSION='44-0'
-  fi
-
   mkdir -p                                                                                    "${TARGET_DIR}"
   mkdir -p                                                                                    "${TARGET_DIR}/assets"
   cp -r "${THEME_SRC_DIR}/assets/gnome-shell/icons"                                           "${TARGET_DIR}"
@@ -959,9 +955,9 @@ customize_theme() {
   fi
 
   # Change gnome-shell panel activities button style
-  if [[ "${default_activities}" == 'true' ]]; then
+  if [[ "${activities_icon}" == 'true' ]]; then
     prompt -s "Changing gnome-shell panel activities button style ...\n"
-    sed $SED_OPT "/\$activities/s/apple/normal/"                                "${THEME_SRC_DIR}/sass/_theme-options-temp.scss"
+    sed $SED_OPT "/\$activities/s/default/icon/"                                "${THEME_SRC_DIR}/sass/_theme-options-temp.scss"
   fi
 
   # Change panel font color

@@ -2,7 +2,7 @@
 <p align="center"> <img src="https://github.com/vinceliuice/WhiteSur-gtk-theme/blob/pictures/pictures/macbook.png"/> </p>
 
 <br>
-<p align="center"> <b> A macOS BigSur-like theme for your GTK apps </b> </p>
+<p align="center"> <b> A macOS like theme for Linux GTK Desktops </b> </p>
 <br>
 
 ## Donate
@@ -94,7 +94,7 @@ Usage:  `./install.sh [OPTIONS...]`
   -s, --size [default|180|220|240|260|280]
  Set Nautilus sidebar minimum width. Default is 200px
 
-  -i, --icon [standard|simple|gnome|ubuntu|tux|arch|manjaro|fedora|debian|void|opensuse|popos|mxlinux|zorin]
+  -i, --icon [apple|simple|gnome|ubuntu|tux|arch|manjaro|fedora|debian|void|opensuse|popos|mxlinux|zorin]
  Set 'Activities' icon. Default is 'standard'
 
   -b, --background [default|blank|IMAGE_PATH]

@@ -2,7 +2,7 @@
 // a.k.a. notifications in the menu
 
 .message-list {
-  width: 31.5em;
+  width: 30em;
   padding: 0 $base_margin;
   text-shadow: none;
   border: none;
@@ -23,8 +23,7 @@
   }
 
   .message-list-placeholder {
-    font-weight: 800;
-    @include fontsize(15);
+    @extend %title_2;
     color: $disabled_fg_color;
 
     // icon size and color
@@ -99,7 +98,7 @@
 
     > .event-time {
       color: $hint_fg_color;
-      font-size: 1em;
+      @extend %caption;
       /* HACK: the label should be baseline-aligned with a 1em label, fake this with some bottom padding */
       padding-bottom: 0.13em;
 

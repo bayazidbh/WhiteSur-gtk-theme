@@ -26,7 +26,9 @@ MY_HOME=$(getent passwd "${MY_USERNAME}" | cut -d: -f6)
 
 if command -v gnome-shell &> /dev/null; then
   SHELL_VERSION="$(gnome-shell --version | cut -d ' ' -f 3 | cut -d . -f -1)"
-  if [[ "${SHELL_VERSION:-}" -ge "44" ]]; then
+  if [[ "${SHELL_VERSION:-}" -ge "46" ]]; then
+    GNOME_VERSION="46-0"
+  elif [[ "${SHELL_VERSION:-}" -ge "44" ]]; then
     GNOME_VERSION="44-0"
   elif [[ "${SHELL_VERSION:-}" -ge "42" ]]; then
     GNOME_VERSION="42-0"
@@ -36,7 +38,7 @@ if command -v gnome-shell &> /dev/null; then
     GNOME_VERSION="3-28"
   fi
 else
-  GNOME_VERSION="none"
+  GNOME_VERSION="46-0"
 fi
 
 #----------Program options-------------#
@@ -86,7 +88,7 @@ COLOR_VARIANTS=('Light' 'Dark')
 OPACITY_VARIANTS=('normal' 'solid')
 ALT_VARIANTS=('normal' 'alt')
 THEME_VARIANTS=('default' 'blue' 'purple' 'pink' 'red' 'orange' 'yellow' 'green' 'grey')
-ICON_VARIANTS=('standard' 'simple' 'gnome' 'ubuntu' 'tux' 'arch' 'manjaro' 'fedora' 'debian' 'void' 'opensuse' 'popos' 'mxlinux' 'zorin' 'budgie' 'gentoo')
+ICON_VARIANTS=('apple' 'simple' 'gnome' 'ubuntu' 'tux' 'arch' 'manjaro' 'fedora' 'debian' 'void' 'opensuse' 'popos' 'mxlinux' 'zorin' 'budgie' 'gentoo')
 SIDEBAR_SIZE_VARIANTS=('default' '180' '220' '240' '260' '280')
 PANEL_OPACITY_VARIANTS=('default' '30' '45' '60' '75')
 PANEL_SIZE_VARIANTS=('default' 'smaller' 'bigger')
@@ -310,10 +312,14 @@ signal_error() {
   done
 
   prompt -e "\n  =========== SYSTEM INFO ========="
-  prompt -e "DISTRO : $(IFS=';'; echo "${dist_ids[*]}")"
-  prompt -e "SUDO   : $([[ -w "/root" ]] && echo "yes" || echo "no")"
-  prompt -e "GNOME  : ${GNOME_VERSION}"
-  prompt -e "REPO   : ${repo_ver}\n"
+  prompt -e "DISTRO  : $(IFS=';'; echo "${dist_ids[*]}")"
+  prompt -e "SUDO    : $([[ -w "/root" ]] && echo "yes" || echo "no")"
+  if command -v gnome-shell &> /dev/null; then
+    prompt -e "DESKTOP : $(gnome-shell --version)"
+  else
+    prompt -e "DESKTOP : ${DESKTOP_SESSION}"
+  fi
+  prompt -e "REPO    : ${repo_ver}\n"
 
   if [[ "$(grep -ril "Release" "${WHITESUR_TMP_DIR}/error_log.txt")" == "${WHITESUR_TMP_DIR}/error_log.txt" ]]; then
     prompt -w "HINT: You can run: 'sudo apt install sassc libglib2.0-dev libxml2-utils' on ubuntu 18.04 or 'sudo apt install sassc libglib2.0-dev-bin' on ubuntu >= 20.04 \n"
